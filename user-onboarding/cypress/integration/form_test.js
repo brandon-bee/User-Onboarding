@@ -6,6 +6,7 @@ describe('Form App', () => {
   const nameInput = () => cy.get('input[name=first_name]');
   const emailInput = () => cy.get('input[name=email]');
   const passwordInput = () => cy.get('input[name=password]');
+  const termsCheckbox = () => cy.get('input[name=serviceTerms]');
 
   it('sanity checks', () => {
     expect(5).to.equal(5);
@@ -17,6 +18,8 @@ describe('Form App', () => {
   it('the proper elements exist', () => {
     nameInput().should('exist');
     emailInput().should('exist');
+    passwordInput().should('exist');
+    termsCheckbox().should('exist');
   })
 
   describe('get the inputs and type in them', () => {
@@ -28,6 +31,12 @@ describe('Form App', () => {
     });
     it('password input', () => {
       passwordInput().type('MyPreciou$').should('have.value', 'MyPreciou$');
+    });
+  })
+
+  describe('can user select terms of service box', () => {
+    it('check box', () => {
+      termsCheckbox().click();
     });
   })
 })
