@@ -4,6 +4,8 @@ describe('Form App', () => {
   })
 
   const nameInput = () => cy.get('input[name=first_name]');
+  const emailInput = () => cy.get('input[name=email]');
+  const passwordInput = () => cy.get('input[name=password]');
 
   it('sanity checks', () => {
     expect(5).to.equal(5);
@@ -14,9 +16,18 @@ describe('Form App', () => {
 
   it('the proper elements exist', () => {
     nameInput().should('exist');
+    emailInput().should('exist');
   })
 
-  it('get the first name input and type a name in it', () => {
-    nameInput().type('Microsoft').should('have.value', 'Microsoft');
+  describe('get the inputs and type in them', () => {
+    it('first name input', () => {
+      nameInput().type('Sauron').should('have.value', 'Sauron');
+    });
+    it('email input', () => {
+      emailInput().type('YourRuler1@mordor.net').should('have.value', 'YourRuler1@mordor.net');
+    });
+    it('password input', () => {
+      passwordInput().type('MyPreciou$').should('have.value', 'MyPreciou$');
+    });
   })
 })
